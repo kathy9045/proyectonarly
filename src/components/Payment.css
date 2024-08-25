@@ -1,0 +1,58 @@
+.payment {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .payment h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .payment-methods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .payment-option {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .payment-option input {
+    margin-right: 10px;
+  }
+  
+  .payment-option label {
+    font-size: 18px;
+  }
+  
+  .confirm-btn,
+  .continue-shopping-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .confirm-btn:hover,
+  .continue-shopping-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  

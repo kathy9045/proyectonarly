@@ -1,0 +1,86 @@
+.orders {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .order-item {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-info {
+    margin-bottom: 10px;
+  }
+  
+  .order-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .order-status.en-preparacion {
+    background-color: #ff9800; /* Naranja para "En preparación" */
+  }
+  
+  .order-status.enviado {
+    background-color: #4caf50; /* Verde para "Enviado" */
+  }
+  
+  .order-status.entregado {
+    background-color: #2196f3; /* Azul para "Entregado" */
+  }
+  .orders {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .order {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .order h2 {
+    margin-top: 0;
+  }
+  
+  .order ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order li {
+    margin-bottom: 5px;
+  }
+  
+  
+  
+  
+  
