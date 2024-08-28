@@ -1,7 +1,8 @@
+// src/components/Home.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import heroImage from '../assets/hero-image.jpg'; // Ajusta la ruta según la ubicación real
+import heroImage from '../assets/hero-image.jpg'; 
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
         <div className="hero-text">
           <h1>Bienvenido a OmegaPetShop</h1>
           <p>Encuentra los mejores productos para tus mascotas con grandes ofertas.</p>
-          <Link to="/register" className="btn-main">Ver Productos</Link>
+          <Link to="/products" className="btn-main">Ver Productos</Link> {/* Cambiado a /products */}
         </div>
       </header>
       <section className="features">
@@ -33,12 +34,12 @@ const Home = () => {
           <div className="promo-item">
             <h3>Comida Premium para Perros</h3>
             <p>¡Compra ahora y obtén un 20% de descuento!</p>
-            <Link to="/register" className="btn-main">Comprar Ahora</Link>
+            <Link to="/products" className="btn-main">Comprar Ahora</Link> {/* Cambiado a /products */}
           </div>
           <div className="promo-item">
             <h3>Juguetes Interactivos para Gatos</h3>
             <p>¡Divierte a tu gato con nuestros juguetes interactivos con un 15% de descuento!</p>
-            <Link to="/register" className="btn-main">Comprar Ahora</Link>
+            <Link to="/products" className="btn-main">Comprar Ahora</Link> {/* Cambiado a /products */}
           </div>
         </div>
       </section>
@@ -47,5 +48,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 

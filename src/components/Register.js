@@ -10,7 +10,7 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
-
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,11 +21,48 @@ const Register = () => {
     });
   };
 
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (!formData.name) {
+      errors.name = 'El nombre es requerido.';
+      isValid = false;
+    }
+
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'El email es inválido.';
+      isValid = false;
+    }
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      errors.password = 'La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula, un número y un carácter especial.';
+      isValid = false;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = 'Las contraseñas no coinciden.';
+      isValid = false;
+    }
+
+    setErrors(errors);
+    return isValid;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulación de registro exitoso
-    // Aquí deberías hacer la llamada a la API de registro
-    navigate('/login'); // Redirige al inicio de sesión
+    if (validateForm()) {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      users.push({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
+      });
+      localStorage.setItem('users', JSON.stringify(users));
+
+      navigate('/login'); // Redirige al inicio de sesión
+    }
   };
 
   return (
@@ -41,6 +78,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div>
           <label>Email:</label>
@@ -51,6 +89,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
         <div>
           <label>Contraseña:</label>
@@ -61,6 +100,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          {errors.password && <p className="error">{errors.password}</p>}
         </div>
         <div>
           <label>Confirmar Contraseña:</label>
@@ -71,6 +111,7 @@ const Register = () => {
             onChange={handleChange}
             required
           />
+          {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         </div>
         <button type="submit">Registrar</button>
       </form>
@@ -79,6 +120,10 @@ const Register = () => {
 };
 
 export default Register;
+
+
+
+
 
 
 

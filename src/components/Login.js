@@ -6,13 +6,24 @@ import './Login.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Simulación de inicio de sesión exitoso
-    // Aquí deberías hacer la llamada a la API de inicio de sesión
-    navigate('/cart'); // Redirige al carrito de compras
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.email === email && user.password === password);
+    
+    if (user) {
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+      navigate('/cart'); // Redirige al carrito de compras
+    } else {
+      setError('Email o contraseña incorrectos.');
+    }
+  };
+
+  const handleRegisterRedirect = () => {
+    navigate('/register'); // Redirige al formulario de registro
   };
 
   return (
@@ -37,13 +48,18 @@ const Login = () => {
             required
           />
         </div>
+        {error && <p className="error">{error}</p>}
         <button type="submit">Iniciar Sesión</button>
+        <p>¿No tienes cuenta? <button type="button" onClick={handleRegisterRedirect}>Regístrate</button></p>
       </form>
     </div>
   );
 };
 
 export default Login;
+
+
+
 
 
 

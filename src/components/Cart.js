@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Cart.css';
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -11,7 +12,21 @@ const Cart = () => {
   }, []);
 
   const calculateTotal = () => {
-    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+  };
+
+  const handleQuantityChange = (id, quantity) => {
+    const updatedCart = cart.map(item =>
+      item.id === id ? { ...item, quantity: parseInt(quantity, 10) || 1 } : item
+    );
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+  };
+
+  const handleRemoveItem = (id) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const handleCheckout = () => {
@@ -26,23 +41,38 @@ const Cart = () => {
       ) : (
         <ul>
           {cart.map((item) => (
-            <li key={item.id}>
-              <h2>{item.name}</h2>
-              <p>Precio: ${item.price}</p>
-              <p>Cantidad: {item.quantity}</p>
-              <p>Total: ${item.price * item.quantity}</p>
+            <li key={item.id} className="cart-item">
+              <img src={item.image} alt={item.name} className="cart-item-image" />
+              <div className="cart-item-details">
+                <h2>{item.name}</h2>
+                <p>Precio: ${item.price}</p>
+                <label>
+                  Cantidad:
+                  <input
+                    type="number"
+                    min="1"
+                    value={item.quantity}
+                    onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                  />
+                </label>
+                <p>Total: ${item.price * item.quantity}</p>
+                <button className="btn-remove" onClick={() => handleRemoveItem(item.id)}>Eliminar</button>
+              </div>
             </li>
           ))}
         </ul>
       )}
-      <h2>Total: ${calculateTotal()}</h2>
-      <button onClick={handleCheckout}>Pagar</button>
-      <button onClick={() => navigate('/products')}>Seguir Comprando</button>
+      <div className="cart-summary">
+        <h2>Total: ${calculateTotal()}</h2>
+        <button className="btn-main" onClick={handleCheckout}>Pagar</button>
+        <button className="btn-secondary" onClick={() => navigate('/products')}>Seguir Comprando</button>
+      </div>
     </div>
   );
 };
 
 export default Cart;
+
 
 
 

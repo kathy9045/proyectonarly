@@ -1,4 +1,4 @@
-// src/App.js
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
@@ -10,6 +10,7 @@ import Orders from './components/Orders';
 import Register from './components/Register';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+
 
 const App = () => {
   return (
