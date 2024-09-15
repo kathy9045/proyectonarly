@@ -5,12 +5,14 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    // Obtener los pedidos desde localStorage y asegurarse de que sea un array
     const storedOrders = JSON.parse(localStorage.getItem('orders')) || [];
     setOrders(storedOrders);
   }, []);
 
+  // Función para calcular el total de los ítems
   const calculateTotal = (items) => {
-    return items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    return items ? items.reduce((acc, item) => acc + item.price * item.quantity, 0) : 0;
   };
 
   return (
@@ -26,7 +28,7 @@ const Orders = () => {
               <p><strong>Fecha:</strong> {order.date}</p>
               <p><strong>Estado:</strong> <span className={`order-status ${order.status.toLowerCase()}`}>{order.status}</span></p>
               <ul>
-                {order.items.map((item) => (
+                {order.items && order.items.map((item) => (
                   <li key={item.id}>
                     <h3>{item.name}</h3>
                     <p>Precio: ${item.price}</p>
@@ -45,9 +47,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-
-
-
-
-

@@ -1,111 +1,146 @@
+/* Estilos generales del componente Home */
 .home {
-    font-family: Arial, sans-serif;
-  }
-  
-  .hero {
-    background: no-repeat center center/cover;
-    color: rgb(3, 3, 3);
-    text-align: center;
-    padding: 60px 20px;
-  }
-  
-  .hero-text {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-  }
-  
-  .hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-  }
-  
-  .btn-main {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: background-color 0.3s;
-  }
-  
-  .btn-main:hover {
-    background-color: #0056b3;
-  }
-  
-  .features {
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 20px;
-    background-color: #ffffff;
-  }
-  
-  .feature {
-    text-align: center;
-    max-width: 300px;
-  }
-  
-  .feature h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  
-  .feature p {
-    font-size: 1em;
-  }
-  
-  .promotions {
-    text-align: center;
-    padding: 40px 20px;
-  }
-  
-  .promotions h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .promo-items {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .promo-item {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    max-width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .promo-item h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-  }
-  
-  .promo-item p {
-    font-size: 1em;
-    margin-bottom: 20px;
-  }
-  
-  .promo-item .btn-main {
-    background-color: #28a745;
-  }
-  
-  .promo-item .btn-main:hover {
-    background-color: #218838;
-  }
-  
-  
-  
-  
-  
-  
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo del hero */
+.hero {
+  background: no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px; /* Ajustado para una altura más manejable */
+  height: 60vh; /* Ajustado el alto del hero */
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+/* Fondo de color con opacidad para mejorar la visibilidad del texto */
+.hero-text {
+  max-width: 600px; /* Reducido para una mejor proporción */
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.6); /* Fondo negro con 60% de opacidad */
+  padding: 20px;
+  border-radius: 8px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Sombra de texto más pronunciada */
+  backdrop-filter: blur(5px); /* Desenfoque del fondo para mayor legibilidad */
+}
+
+.hero h1 {
+  font-size: 2.2em; /* Ajustado para mejor proporción */
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.btn-main {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-main:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Efecto de escala para mayor interacción */
+}
+
+/* Estilo de las características */
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px 20px;
+  background-color: #f8f9fa; /* Fondo gris claro para contraste */
+}
+
+.feature {
+  text-align: center;
+  max-width: 300px;
+  padding: 20px; /* Añadido padding para mejorar la apariencia */
+}
+
+.feature h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #007bff; /* Color de texto destacado */
+}
+
+.feature p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* Estilo de las promociones */
+.promotions {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff; /* Fondo blanco para destacar las promociones */
+}
+
+.promotions h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333; /* Color oscuro para el título */
+}
+
+.promo-items {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.promo-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Bordes más redondeados */
+  padding: 20px;
+  margin: 10px;
+  max-width: 320px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.promo-item h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #007bff; /* Color destacado para los títulos de promoción */
+}
+
+.promo-item p {
+  font-size: 1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.promo-item .btn-main {
+  background-color: #28a745; /* Verde para las promociones */
+}
+
+.promo-item .btn-main:hover {
+  background-color: #218838;
+}
+
+/* Estilo del footer */
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.footer p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+}

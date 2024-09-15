@@ -1,18 +1,29 @@
-/* src/components/Register.css */
-.register {
-  max-width: 500px;
-  margin: 0 auto;
+/* Estilos generales del formulario de registro */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.register-form-container {
+  width: 100%;
+  max-width: 450px; /* Un poco más estrecho para mejorar la apariencia */
+  background: #ffffff;
+  border-radius: 12px; /* Bordes más redondeados */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+  padding: 30px; /* Más espacio interno */
+  box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
+  margin-bottom: 24px;
+  font-size: 32px; /* Fuente más grande para el título */
   color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente más moderna */
 }
 
 form {
@@ -20,41 +31,97 @@ form {
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 5px;
-  font-size: 16px;
-  color: #333;
+.form-group {
+  margin-bottom: 24px; /* Más espacio entre los campos */
+  position: relative;
 }
 
-input {
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555; /* Color gris más suave */
+  font-weight: 500; /* Más negrita para los labels */
+}
+
+.form-group input {
   width: 100%;
-  padding: 10px;
+  padding: 14px; /* Más espacio interno */
   border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 15px; /* Asegura que haya espacio entre los campos */
+  border-radius: 6px; /* Bordes más suaves */
+  font-size: 16px;
+  box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+  outline: none; /* Elimina el borde predeterminado al enfocar */
+  transition: border-color 0.3s ease; /* Transición suave para el enfoque */
+}
+
+.form-group input:focus {
+  border-color: #007bff; /* Color de borde al enfocar */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3); /* Sombra de enfoque */
+}
+
+.password-group {
+  position: relative;
+}
+
+.password-group input {
+  padding-right: 40px; /* Reserva espacio para el ícono */
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px; /* Ajusta la distancia del borde derecho */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
 }
 
 button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 14px;
+  border-radius: 6px; /* Bordes más suaves */
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Añadida transición para el efecto de hover */
+  margin-top: 10px;
+  width: 100%;
 }
 
 button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
 }
 
 .error {
   color: #e74c3c;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
-  
-  
-  
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-link span {
+  font-size: 16px;
+  color: #555;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500; /* Más negrita para el enlace */
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+  color: #0056b3; /* Color de enlace al pasar el ratón */
+}

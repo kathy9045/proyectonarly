@@ -1,9 +1,53 @@
+/* src/components/Contact.css */
 .contact {
-    padding: 20px;
-    background-color: #f4f4f4;
-  }
-  
-  .contact h2 {
-    color: #2a5736;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.contact h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contact p {
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact label {
+  display: block;
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.contact input, .contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.contact textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.contact button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.contact button:hover {
+  background-color: #0056b3;
+}

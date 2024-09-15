@@ -1,7 +1,7 @@
-// src/components/Register.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Register.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ const Register = () => {
     password: '',
     confirmPassword: ''
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -66,66 +68,87 @@ const Register = () => {
   };
 
   return (
-    <div className="register">
-      <h1>Registro</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-          {errors.name && <p className="error">{errors.name}</p>}
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          {errors.password && <p className="error">{errors.password}</p>}
-        </div>
-        <div>
-          <label>Confirmar Contraseña:</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-          {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
-        </div>
-        <button type="submit">Registrar</button>
-      </form>
+    <div className="register-container">
+      <div className="register-form-container">
+        <h1>Registro</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Nombre:</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            {errors.name && <p className="error">{errors.name}</p>}
+          </div>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && <p className="error">{errors.email}</p>}
+          </div>
+          <div className="form-group password-group">
+            <label>Contraseña:</label>
+            <div className="password-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+            {errors.password && <p className="error">{errors.password}</p>}
+          </div>
+          <div className="form-group password-group">
+            <label>Confirmar Contraseña:</label>
+            <div className="password-container">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+            {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+          </div>
+          <div className="form-group">
+            <label>
+              <input type="checkbox" required /> Acepto los{' '}
+              <a href="#" onClick={() => navigate('/terms-and-conditions')}>términos y condiciones</a>
+            </label>
+          </div>
+          <button type="submit">Registrar</button>
+          <div className="login-link">
+            <span>¿Ya tienes una cuenta? </span>
+            <a href="#" onClick={() => navigate('/login')}>Iniciar sesión</a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
 
 export default Register;
-
-
-
-
-
-
-
-
-

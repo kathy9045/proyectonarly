@@ -1,25 +1,51 @@
 // src/components/Navbar.js
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faSignInAlt, faUserPlus, faShoppingCart, faEnvelope, faTag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
-  const handleBuyNowClick = () => {
-    navigate('/login'); // Redirige a la página de inicio de sesión
-  };
+  const { user, logout } = useAuth();
+  console.log('User in Navbar:', user); // Verifica el estado del usuario
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">OmegaPetShop</Link>
+        <Link to="/" className="navbar-logo">
+          <FontAwesomeIcon icon={faHome} /> OmegaPetShop
+        </Link>
         <div className="navbar-menu">
-          <Link to="/login" className='navbar-item'>Iniciar Sesión</Link>
-          <Link to="/" className="navbar-item">Inicio</Link>
-          <Link to="/products" className="navbar-item">Productos</Link>
-          <Link to="/cart" className="navbar-item">Carrito</Link>
-          <button onClick={handleBuyNowClick} className="navbar-button">Comprar Ahora</button>
+          <Link to="/products" className="navbar-item">
+            <FontAwesomeIcon icon={faHome} /> Productos
+          </Link>
+          <Link to="/contact" className="navbar-item">
+            <FontAwesomeIcon icon={faEnvelope} /> Contacto
+          </Link>
+          {user ? (
+            <>
+              <Link to="/cart" className="navbar-item">
+                <FontAwesomeIcon icon={faShoppingCart} /> Carrito
+              </Link>
+              <Link to="/orders" className="navbar-item">
+                <FontAwesomeIcon icon={faTag} /> Pedidos
+              </Link>
+              <Link to="/account" className="navbar-item">
+                <FontAwesomeIcon icon={faUser} /> Cuenta
+              </Link>
+              <button onClick={logout} className="navbar-button">Cerrar Sesión</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="navbar-item">
+                <FontAwesomeIcon icon={faSignInAlt} /> Iniciar Sesión
+              </Link>
+              <Link to="/register" className="navbar-item">
+                <FontAwesomeIcon icon={faUserPlus} /> Registrarse
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
@@ -27,4 +53,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

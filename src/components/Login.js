@@ -1,65 +1,47 @@
-// src/components/Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const user = users.find(user => user.email === email && user.password === password);
     
-    if (user) {
-      localStorage.setItem('loggedInUser', JSON.stringify(user));
-      navigate('/cart'); // Redirige al carrito de compras
-    } else {
-      setError('Email o contraseña incorrectos.');
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', { email, password });
+      console.log(response.data.message); // Manejar inicio de sesión exitoso
+      setError(''); // Limpiar error si hay éxito
+    } catch (err) {
+      // Manejar error
+      if (err.response && err.response.status === 404) {
+        setError('Usuario no registrado');
+      } else if (err.response && err.response.status === 401) {
+        setError('Contraseña incorrecta');
+      } else {
+        setError('Error al iniciar sesión');
+      }
     }
   };
 
-  const handleRegisterRedirect = () => {
-    navigate('/register'); // Redirige al formulario de registro
-  };
-
   return (
-    <div className="login">
+    <div>
       <h1>Iniciar Sesión</h1>
       <form onSubmit={handleLogin}>
         <div>
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
           <label>Contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        {error && <p className="error">{error}</p>}
         <button type="submit">Iniciar Sesión</button>
-        <p>¿No tienes cuenta? <button type="button" onClick={handleRegisterRedirect}>Regístrate</button></p>
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
 };
 
 export default Login;
-
-
-
-
-
-

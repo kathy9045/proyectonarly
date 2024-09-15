@@ -1,0 +1,37 @@
+/* src/components/Footer.css */
+.footer {
+    background-color: #f8f9fa; /* Color de fondo del footer */
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Asegura que el footer esté en el flujo del documento */
+    width: 100%;
+    bottom: 0;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer nav {
+    margin-top: 10px;
+  }
+  
+  .footer nav a {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .footer nav a:hover {
+    text-decoration: underline;
+  }
+  /* src/components/Footer.css */
+.footer {
+    background-color: #f8f9fa; /* Color de fondo del footer */
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Asegura que el footer esté en el flujo normal del documento */
+  }
+  

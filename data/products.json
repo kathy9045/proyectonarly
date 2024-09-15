@@ -1,0 +1,13 @@
+[
+    {
+      "id": 101,
+      "name": "Comida Premium",
+      "price": 25.00
+    },
+    {
+      "id": 102,
+      "name": "Juguete para Gato",
+      "price": 15.00
+    }
+  ]
+  

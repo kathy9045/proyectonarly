@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "date": "2024-09-15",
+      "status": "Confirmado",
+      "items": [
+        {
+          "id": 101,
+          "name": "Comida Premium",
+          "price": 25.00,
+          "quantity": 2
+        },
+        {
+          "id": 102,
+          "name": "Juguete para Gato",
+          "price": 15.00,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+  

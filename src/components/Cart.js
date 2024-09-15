@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Cart.css';
 
 const Cart = () => {
+  const { user } = useAuth();  // Accede al estado de autenticación
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
 
@@ -29,8 +31,21 @@ const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
+  const handleAddToCart = () => {
+    if (!user) {
+      navigate('/login');
+    } else {
+      // Aquí podrías añadir la lógica para agregar un producto al carrito
+      // Por ejemplo, mostrar un mensaje de éxito o actualizar el carrito
+    }
+  };
+
   const handleCheckout = () => {
-    navigate('/payment');
+    if (!user) {
+      navigate('/login');
+    } else {
+      navigate('/payment');
+    }
   };
 
   return (
@@ -66,16 +81,10 @@ const Cart = () => {
         <h2>Total: ${calculateTotal()}</h2>
         <button className="btn-main" onClick={handleCheckout}>Pagar</button>
         <button className="btn-secondary" onClick={() => navigate('/products')}>Seguir Comprando</button>
+        <button className="btn-add" onClick={handleAddToCart}>Añadir al carrito</button> {/* Botón para añadir al carrito */}
       </div>
     </div>
   );
 };
 
 export default Cart;
-
-
-
-
-
-
-
