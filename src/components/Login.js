@@ -1,45 +1,68 @@
+// src/components/Login.js
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Asegúrate de que esta línea esté presente
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      console.log(response.data.message); // Manejar inicio de sesión exitoso
-      setError(''); // Limpiar error si hay éxito
+      await login(email, password);
+      navigate('/'); // Redirige a la página principal o a donde desees
     } catch (err) {
-      // Manejar error
-      if (err.response && err.response.status === 404) {
-        setError('Usuario no registrado');
-      } else if (err.response && err.response.status === 401) {
-        setError('Contraseña incorrecta');
-      } else {
-        setError('Error al iniciar sesión');
-      }
+      setError('Email o contraseña incorrectos');
     }
   };
 
   return (
-    <div>
-      <h1>Iniciar Sesión</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="login-container">
+      <div className="login-form-container">
+        <h1>Iniciar Sesión</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group password-group">
+            <label>Contraseña:</label>
+            <div className="password-container">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+            {error && <p className="error">{error}</p>}
+          </div>
+          <button type="submit">Iniciar Sesión</button>
+          <div className="register-link">
+            <span>¿No tienes una cuenta? </span>
+            <a href="#" onClick={() => navigate('/register')}>Regístrate</a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
